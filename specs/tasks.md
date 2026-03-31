@@ -1,12 +1,12 @@
 # Development Tasks: Personal Finance API
 
 ## Phase 1: Foundation & Setup
-- [ ] Initialize project structure following the **Hexagonal Architecture** directory tree.
-- [ ] Setup Pydantic configuration (`app/core/config.py`) for environment variables.
-- [ ] Configure SQLAlchemy async engine and base session management (`app/infrastructure/database.py`).
-- [ ] Setup Alembic for migrations, including the `env.py` async configuration.
-- [ ] Define base entities and common domain exceptions (`app/domain/entities/base.py`).
-- [ ] Configure Dockerfile and docker-compose.yml for local development.
+- [x] Initialize project structure following the **Hexagonal Architecture** directory tree.
+- [x] Setup Pydantic configuration (`app/core/config.py`) for environment variables.
+- [x] Configure SQLAlchemy async engine and base session management (`app/infrastructure/database.py`).
+- [x] Setup Alembic for migrations, including the `env.py` async configuration.
+- [x] Define base entities and common domain exceptions (`app/domain/entities/base.py`).
+- [x] Configure Dockerfile and docker-compose.yml for local development.
 
 ## Phase 2: User Authentication & Security
 - [ ] Implement `User` entity and initial migration.

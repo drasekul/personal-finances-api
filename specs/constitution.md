@@ -61,6 +61,7 @@ All core features and architectural decisions defined in the specification (`spe
 
 ### 4.1 Documentation
 - **API Doc**: All endpoints must be decorated with relevant tags and summary descriptions for Swagger clarity.
+- **Task Tracking**: Every time changes are applied, the associated tasks in `tasks.md` MUST be checked and marked as completed.
 - **Changelog**: All major task completions should be documented or reflected in the `tasks.md` progress.
 
 ### 4.2 Testing Integrity

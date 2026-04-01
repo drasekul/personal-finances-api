@@ -9,9 +9,9 @@ The primary objective of this project is to build a robust, secure, and performa
 
 ### 1. User Management & Authentication
 - **Register**: Create a new account with email, password, full name, and preferred currency.
-- **Login**: Securely authenticate using email and password to receive a JWT (Access + Refresh tokens).
+- **Login**: Securely authenticate using email and password (JSON-based schema) to receive a JWT (Access + Refresh tokens).
 - **Profile**: View and update user profile information (except email).
-- **Refresh Token**: Obtain a new access token using a valid refresh token (token rotation).
+- **Refresh Token**: Obtain a new access token using a valid refresh token (token rotation). Also supports refreshing user context.
 
 ### 2. Category Management
 - **Default Categories**: Use system-provided categories (e.g., Food, Transport, Rent).
@@ -58,9 +58,10 @@ The primary objective of this project is to build a robust, secure, and performa
 - **Efficient Pagination**: Large datasets must be handled via optimized cursor-based pagination.
 
 ### 3. Security
-- **Stateless Auth**: Robust JWT implementation with short-lived access tokens and secure refresh token rotation.
+- **Stateless Auth**: Robust JWT implementation (HS256) with short-lived access tokens (30m) and secure refresh token rotation (7d).
 - **Ownership Enforcement**: Every request must strictly validate that the user is the owner of the resource being accessed/modified.
-- **Encrypted Secrets**: Passwords must be hashed using `bcrypt`. No sensitive data (e.g., hashed passwords, internal IDs) should ever be exposed in responses.
+- **Encrypted Secrets**: Passwords must be hashed using `bcrypt` via Passlib. No sensitive data (e.g., hashed passwords, internal IDs) should ever be exposed in responses.
+- **Currency Standard**: All users must have a 3-character currency code (ISO-4217 recommended, defaults to "USD").
 
 ### 4. Maintainability & Standards
 - **Testing**: Minimum global test coverage of 75%, with critical security and business logic modules at 80%+.

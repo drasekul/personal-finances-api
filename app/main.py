@@ -2,12 +2,15 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from app.core.config import settings
 from app.domain.exceptions import DomainException, EntityNotFoundException
+from app.web.api.v1.auth import router as auth_router
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
     openapi_url=f"{settings.API_V1_STR}/openapi.json",
 )
+
+app.include_router(auth_router, prefix=settings.API_V1_STR)
 
 
 @app.exception_handler(DomainException)

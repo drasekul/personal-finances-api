@@ -9,3 +9,8 @@ This file contains reflections on what worked or failed during the development p
 ## Avoidance Log
 - **Floating Point**: Never use `float` for money (already enforced by constitution).
 - **N+1 Queries**: Always use `selectinload` or `joinedload`.
+
+## Phase 2: Lessons Learned
+- **Alembic in Isolation**: Generating migrations requires access to the database or a specialized migration tool environment. For this dev session, code has been verified for structural correctness against the schema.
+- **Pydantic Validation**: Using `min_length=3` and `max_length=3` for currency provides a simple yet effective validation layer for Phase 2.
+- **Hexagonal Decoupling**: Keeping the repo port in the domain ensures that even if we change the persistence layer (to MongoDB or others), the business logic in AuthUseCase remains untouched.

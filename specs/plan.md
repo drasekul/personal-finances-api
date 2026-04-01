@@ -11,7 +11,7 @@
 | **Migration** | Alembic | Version control for database schema changes. |
 | **Caching** | Redis 7+ | caching layer for reports and API response performance. |
 | **Validation** | Pydantic v2 | Schema definition and data validation. |
-| **Security** | passlib + bcrypt / python-jose | Password hashing and JWT management. |
+| **Security** | passlib + bcrypt / python-jose | Password hashing (bcrypt) and JWT (HS256) management. |
 | **Task Queue** | APScheduler | Background jobs for budget threshold checking. |
 | **Containerization** | Docker / Docker Compose | reproducible development and deployment environment. |
 | **Testing** | Pytest / Pytest-asyncio | Automation testing suite. |
@@ -109,23 +109,30 @@ The application follows a **Hexagonal Architecture** (also known as Ports and Ad
 app/
 ├── domain/               # Core business logic
 │   ├── entities/         # SQLAlchemy Models (Domain representation)
+│   │   ├── __init__.py   # Model registrar for Alembic
+│   │   ├── base.py       # BaseEntity with UUID and timestamps
+│   │   └── user.py       # User entity
 │   ├── ports/            # Abstract Repository/Service interfaces
+│   │   └── user_repository.py
 │   └── exceptions.py     # Domain-specific exceptions
 ├── application/          # Use cases & coordination
 │   └── use_cases/        # Service logic implementation
+│       └── auth.py       # Registration, Login, and Rotation logic
 ├── infrastructure/       # External tool implementations (Adapters)
 │   ├── adapters/         # Implementation of domain ports
 │   │   ├── postgres/     # SQLAlchemy repository implementations
+│   │   │   └── user_repository.py
 │   │   └── redis/        # Caching implementations
 │   └── database.py       # Engine and Session setup
 ├── web/                  # API Layer (FastAPI Adapters)
 │   ├── api/              # API Route definitions
-│   ├── schemas/          # Pydantic DTOs
-│   └── dependencies/     # FastAPI Dependency Injection
+│   │   └── v1/           # Versioned API routes (e.g., auth.py)
+│   ├── schemas/          # Pydantic DTOs (user.py, auth.py)
+│   └── dependencies/     # FastAPI Dependency Injection (auth.py)
 ├── core/                 # Shared configuration
 │   ├── config.py         # App settings (Pydantic Settings)
-│   └── security.py       # Password & JWT utilities
-└── main.py              # Application entry point
+│   └── security.py       # Passlib and JWT utilities
+└── main.py              # Application entry point & router registration
 ```
 
 ---

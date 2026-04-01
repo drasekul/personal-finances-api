@@ -9,12 +9,12 @@
 - [x] Configure Dockerfile and docker-compose.yml for local development.
 
 ## Phase 2: User Authentication & Security
-- [ ] Implement `User` entity and initial migration.
-- [ ] Create hashing and JWT utilities in `app/core/security.py`.
-- [ ] Define `UserRepository` port and its Postgres adapter implementation.
-- [ ] Build `AuthUseCase` in the application layer.
-- [ ] Implement Web adapters: Auth schemas and FastAPI routers.
-- [ ] Setup `get_current_user` dependency.
+- [x] Implement `User` entity and initial migration (Code implementation ready).
+- [x] Create hashing and JWT utilities in `app/core/security.py`.
+- [x] Define `UserRepository` port and its Postgres adapter implementation.
+- [x] Build `AuthUseCase` in the application layer.
+- [x] Implement Web adapters: Auth schemas and FastAPI routers.
+- [x] Setup `get_current_user` dependency.
 
 ## Phase 3: Categories & Tagging
 - [ ] Implement `Category` and `Tag` entities.

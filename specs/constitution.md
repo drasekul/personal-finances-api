@@ -53,7 +53,9 @@ All core features and architectural decisions defined in the specification (`spe
 
 ### 3.3 Error Handling
 - **Consistent Response**: All errors must return a JSON object with a `detail` message: `{"detail": "Error message"}`.
-- **Validation**: Use Pydantic's built-in validation. For business logic errors, raise `HTTPException` with appropriate status codes (400, 403, 404).
+- **Validation**: Use Pydantic's built-in validation (e.g., `min_length`, `max_length`, `le`, `ge`).
+- **Domain Exception Handling**: Raise `DomainException` in business logic (Application Layer). In `main.py`, these MUST be globally handled and mapped to `HTTP 400` or higher to protect internal stack traces.
+- **Entity Identification**: Use `EntityNotFoundException` (mapped to `HTTP 404`) when a resource is missing.
 
 ---
 

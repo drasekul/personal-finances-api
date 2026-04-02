@@ -57,6 +57,13 @@
 - `name`: String
 - **Constraint**: Unique combination of `(user_id, name)`
 
+### 5. UserCategoryPreference
+- `id`: UUID (Primary Key)
+- `user_id`: UUID (ForeignKey to User)
+- `category_id`: UUID (ForeignKey to Category)
+- `is_enabled`: Boolean (Default: True)
+- **Constraint**: Unique combination of `(user_id, category_id)`
+
 ### 5. Budget
 - `id`: UUID (Primary Key)
 - `user_id`: UUID (ForeignKey to User, Indexed)

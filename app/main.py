@@ -3,6 +3,8 @@ from fastapi.responses import JSONResponse
 from app.core.config import settings
 from app.domain.exceptions import DomainException, EntityNotFoundException
 from app.web.api.v1.auth import router as auth_router
+from app.web.api.v1.categories import router as categories_router
+from app.web.api.v1.tags import router as tags_router
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -11,6 +13,8 @@ app = FastAPI(
 )
 
 app.include_router(auth_router, prefix=settings.API_V1_STR)
+app.include_router(categories_router, prefix=settings.API_V1_STR)
+app.include_router(tags_router, prefix=settings.API_V1_STR)
 
 
 @app.exception_handler(DomainException)

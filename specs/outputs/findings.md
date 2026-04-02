@@ -14,3 +14,8 @@ This file contains reflections on what worked or failed during the development p
 - **Alembic in Isolation**: Generating migrations requires access to the database or a specialized migration tool environment. For this dev session, code has been verified for structural correctness against the schema.
 - **Pydantic Validation**: Using `min_length=3` and `max_length=3` for currency provides a simple yet effective validation layer for Phase 2.
 - **Hexagonal Decoupling**: Keeping the repo port in the domain ensures that even if we change the persistence layer (to MongoDB or others), the business logic in AuthUseCase remains untouched.
+
+## Phase 3: Lessons Learned
+- **Preference vs. Deletion**: Using a separate `UserCategoryPreference` table for default categories avoids complex logic in the main `Category` table and prevents data pollution when multiple users hide different defaults.
+- **Seeding idempotency**: Ensuring the `seed_default_categories` method checks for existing entries by name and type prevents duplicate system categories during manual or automated triggers.
+- **Iconography/Color curation**: While no specific set was provided, using standard FontAwesome-style icon names and hex codes provides a solid starting point for UI integration.
